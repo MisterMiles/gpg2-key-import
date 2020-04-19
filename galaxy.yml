@@ -5,7 +5,7 @@
 # I use my Github username.
 namespace: mistermiles
 # The name of this collection.
-name: import_gpg_key
+name: gpg_key_import
 # The current version of the collection. Update this each time you want to release a new version to Galaxy.
 version: 1.0
 # The markdown README file for the collection. Galaxy displays this on your collection page.

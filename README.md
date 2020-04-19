@@ -43,7 +43,7 @@ Example Playbook
         gpg_email: repo@mail.com
         gpg_home: /var/lib/repo
      roles:
-        - role: import_gpg_key
+        - role: gpg_key_import
 ```
 
 License
