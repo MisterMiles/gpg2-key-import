@@ -1,0 +1,78 @@
+---
+
+- name: create system group
+  group:
+    name: "{{ gpg_group }}"
+    system: True
+    state: "present"
+
+- name: create system user
+  user:
+    name: "{{ gpg_user }}"
+    group: "{{ gpg_group }}"
+    home: "{{ gpg_home }}"
+    system: yes
+
+- name: check public key
+  become_user: "{{ gpg_user }}"
+  shell: gpg --list-public-keys
+  ignore_errors: true
+  changed_when: false
+  register: pubkey_imported
+
+- name: check signing key
+  become_user: "{{ gpg_user }}"
+  shell: gpg --list-secret-keys
+  ignore_errors: true
+  changed_when: false
+  register: signkey_imported
+
+- name: check ownertrust
+  become_user: "{{ gpg_user }}"
+  shell: gpg --export-ownertrust
+  ignore_errors: true
+  changed_when: false
+  register: trust_imported
+
+- name: ensure gpg dicrectory and keys
+  block:
+    - name: ensure gnupg directory
+      file:
+        path: "{{ tmp_dir }}"
+        state: "directory"
+        owner: "{{ gpg_user }}"
+        group: "{{ gpg_group }}"
+        mode: "0700"
+
+    - name: copy gpg keys
+      template:
+        src: "files/{{ item }}"
+        dest: "{{ tmp_dir }}/{{ item }}"
+        owner: "{{ gpg_user }}"
+        group: "{{ gpg_group }}"
+        mode: "0600"
+      with_items:
+        - public.key
+        - signing.key
+        - ultimate.trust
+  when: (signkey_imported.stdout == "") and (pubkey_imported.stdout == "") and (":6:" not in trust_imported.stdout)
+
+- name: import public key
+  become_user: "{{ gpg_user }}"
+  shell: gpg --import {{ tmp_dir }}/public.key
+  when: gpg_gpg_email not in pubkey_imported.stdout
+
+- name: import signing key
+  become_user: "{{ gpg_user }}"
+  shell: gpg --import {{ tmp_dir }}/signing.key
+  when: gpg_gpg_email not in signkey_imported.stdout
+
+- name: import ownertrust
+  become_user: "{{ gpg_user }}"
+  shell: gpg --import-ownertrust {{ tmp_dir }}/ultimate.trust
+  when: (":6:" not in trust_imported.stdout)
+
+- name: clean up directory and keys
+  file:
+    state: absent
+    path: "{{ tmp_dir }}/"

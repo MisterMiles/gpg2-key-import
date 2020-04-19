@@ -1,0 +1,8 @@
+---
+gpg_home: "/homename/"
+gpg_user: "username"
+gpg_group: "groupname"
+
+gpg_email: "your_gpg_email@world.de"
+
+tmp_dir: "{{ gpg_home }}/tmp"
