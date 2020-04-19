@@ -26,8 +26,8 @@ Role Variables
 --------------
 `gpg_user`: Name of the User<br />
 `gpg_group`: Name of the group<br />
-`gpg_email`: Email of gpg key<br />
-`gpg_home`: Where GPG will be located
+`gpg_email`: Email of the gpg key<br />
+`gpg_home`: Directory of the GPG folder
 
 Dependencies
 ------------
