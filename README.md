@@ -1,7 +1,7 @@
 GPG key import
 =========
 
-Adds your personal gpg key to a given host.
+Importing a gpg key to a specific host.
 
 ## Features
 
