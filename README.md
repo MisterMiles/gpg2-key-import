@@ -25,7 +25,7 @@ Before running the role you should update `defaults/main.yml` with your personal
 2. Add these keys to `files/` and update `defaults/main.yml` with your personal preferences
 3. Use at least Ansible version 2.9.0
 
-##How to run the role
+## How to run the role
 
 You can run the role as follows `ansible-playbook ../setup.yml --ask-become-pass`
 ```
