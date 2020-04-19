@@ -26,8 +26,8 @@ Before running the role you should update `defaults/main.yml` with your personal
 3. Use at least Ansible version 2.9.0
 
 ## How to run
+You can run the role as follows `ansible-playbook setup.yml --ask-become-pass`
 
-You can run the role as follows `ansible-playbook ../setup.yml --ask-become-pass`
 ```
 cat ../setup.yml
  - name: Export your gnupg key to hosts
@@ -40,6 +40,6 @@ cat ../setup.yml
      gpg_email: your_email_of_your_gpg_key
      gpg_home: where_keys_will_be_installed
    roles:
-     - role: import_gpg
+     - role: import_gpg_key
 ```
 Happy coding :-)
