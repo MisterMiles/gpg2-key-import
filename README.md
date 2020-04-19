@@ -8,7 +8,7 @@ Importing a gpg key to a specific host.
 - Tests if your gpg key is present
 - Easy to use: you have only to supply your key files
 - Idempotency is present in all actions
-- Key is added user base
+- Key is added to a specific user
 
 Requirements
 ------------

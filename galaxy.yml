@@ -1,7 +1,7 @@
 ---
 namespace: mistermiles
 name: gpg_key_import
-version: 1.0
+version: 1.0.1
 readme: README.md
 authors:
   - Alexis Miles Oortmann (@MisterMiles) <mister_dev@mailbox.org>
@@ -10,8 +10,10 @@ license_file: LICENSE
 dependencies: { }
 tags:
   - gpg
-  - gpg import
-  - gpg key import
+  - pgp
+  - openpgp
+  - import
+  - gnupg
 repository: https://github.com/MisterMiles/gpg-key-import
 documentation: https://github.com/MisterMiles/gpg-key-import
 issues: https://github.com/MisterMiles/gpg-key-import/issues
