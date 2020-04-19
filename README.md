@@ -1,4 +1,4 @@
-Role Name
+Import gpg key
 =========
 
 Adds your personal gpg key to a given host.
