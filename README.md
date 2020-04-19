@@ -12,7 +12,7 @@ The role adds your personal gpg key to a given host.
 ## Usage of the role
 Before running the role you should update `defaults/main.yml` with your personal informations and add your gpg keys in `files/`. 
 
-### How to export the gpg keys to files
+### How to export the gpg keys
 - public.key -> `gpg -a --export username@email > files/public.key`
 
 - signing.key -> `gpg -a --export-secret-keys username@email > files/signing.key`
@@ -24,7 +24,10 @@ Before running the role you should update `defaults/main.yml` with your personal
 1. Prepare and export a gpg signing key
 2. Add these keys to `files/` and update `defaults/main.yml` with your personal preferences
 3. Use at least Ansible version 2.9.0
-4. You can run the role as follows `ansible-playbook ../setup.yml --ask-become-pass`
+
+##How to run the role
+
+You can run the role as follows `ansible-playbook ../setup.yml --ask-become-pass`
 ```
 cat ../setup.yml
  - name: Export your gnupg key to hosts
@@ -39,3 +42,4 @@ cat ../setup.yml
    roles:
      - role: import_gpg
 ```
+Happy coding :-)
