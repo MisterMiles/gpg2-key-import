@@ -40,7 +40,7 @@ Example Playbook
      become: yes
      vars:
         gpg_user: repo_user
-        gpg_group: repo_grou`
+        gpg_group: repo_group
         gpg_email: repo@mail.com
         gpg_home: /var/lib/repo
      roles:
