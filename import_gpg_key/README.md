@@ -54,6 +54,5 @@ MIT
 
 Author Information
 ------------------
-
-Author: Alexis Miles Oortmann
+Alexis Miles Oortmann
 Email: mistermiles_ansible_hacks@mailbox.org
