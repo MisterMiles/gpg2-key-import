@@ -1,34 +1,17 @@
 ---
-
-# The Ansible Galaxy namespace under which this collection will be published.
-# This can be a company/brand/organization or product namespace under which all content lives.
-# I use my Github username.
 namespace: mistermiles
-# The name of this collection.
 name: gpg_key_import
-# The current version of the collection. Update this each time you want to release a new version to Galaxy.
 version: 1.0
-# The markdown README file for the collection. Galaxy displays this on your collection page.
 readme: README.md
-# A list of authors who contributed to this collection. Similar to the list inside the custom plugin.
 authors:
   - Alexis Miles Oortmann (@MisterMiles) <mister_dev@mailbox.org>
-# Self-explanatory. This should be a short (1-2 sentence) summary.
 description: Importing a gpg key to a specific host
-# Either a single file or a list of license files.
-# Note that Ansible Galaxy currently only accepts SPDX licenses - https://spdx.org/licenses/
 license_file: LICENSE
-# List any collections that this collection requires to be installed for it to be usable.
 dependencies: { }
-# Add the tags you'd like Ansible Galaxy to associate to your collection.
 tags:
   - gpg
   - gpg import
   - gpg key import
-  - 
-# The URL to your project repository. Galaxy will link to this location.
-repository: https://github.com/artis3n/github_version-ansible_plugin
-# The URL to your project's documentation. Galaxy will link to this location.
-documentation: https://github.com/artis3n/github_version-ansible_plugin
-# The URL to your project's issue intake. Galaxy will link to this location.
-issues: https://github.com/artis3n/github_version-ansible_plugin/issues
+repository: https://github.com/MisterMiles/gpg-key-import
+documentation: https://github.com/MisterMiles/gpg-key-import
+issues: https://github.com/MisterMiles/gpg-key-import/issues
