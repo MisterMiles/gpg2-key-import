@@ -1,8 +1,8 @@
 ---
-gpg_home: "/homename/"
 gpg_user: "username"
 gpg_group: "groupname"
 
-gpg_email: "your_gpg_email@world.de"
+gpg_email: "username@email"
 
-tmp_dir: "{{ gpg_home }}/tmp"
+gpg_home: "{{ lookup('env','HOME') }}"
+tmp_dir: "{{ gpg_home }}/tmp }}"
