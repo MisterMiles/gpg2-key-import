@@ -1,0 +1,17 @@
+galaxy_info:
+  author: Alexis Miles Oortmann
+  description: Import a gpg key to a given host
+  license: MIT
+  min_ansible_version: 2.9.2
+
+  galaxy_tags:
+    - gpg
+    - gpg import
+    - import gpg key
+
+  platforms:
+    - name: GenericLinux
+      versions:
+        - any
+
+dependencies: []
