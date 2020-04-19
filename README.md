@@ -1,4 +1,4 @@
-# import-gpg-with-ansible
+# import-gpg-key
 
 The role adds your personal gpg key to a given host. 
 
