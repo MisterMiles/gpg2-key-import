@@ -24,10 +24,10 @@ Before running the role you should update `defaults/main.yml` with your personal
 
 Role Variables
 --------------
-`gpg_user`: < Name of the User ><br />
-`gpg_group`: < Name of the group ><br />
-`gpg_email`: < Email of gpg key ><br />
-`gpg_home`: < Where GPG will be located >
+`gpg_user`: Name of the User<br />
+`gpg_group`: Name of the group<br />
+`gpg_email`: Email of gpg key<br />
+`gpg_home`: Where GPG will be located
 
 Dependencies
 ------------
