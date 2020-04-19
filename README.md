@@ -1,4 +1,4 @@
-Import gpg key
+GPG key import
 =========
 
 Adds your personal gpg key to a given host.
