@@ -19,13 +19,13 @@ Before running the role you should update `defaults/main.yml` with your personal
 
 - ultimate.trust -> `gpg --export-ownertrust > files/ultimate.trust`
 
-## Steps to perform
+## Preparation
 
 1. Prepare and export a gpg signing key
 2. Add these keys to `files/` and update `defaults/main.yml` with your personal preferences
 3. Use at least Ansible version 2.9.0
 
-## How to run the role
+## How to run
 
 You can run the role as follows `ansible-playbook ../setup.yml --ask-become-pass`
 ```
