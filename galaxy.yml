@@ -1,11 +1,11 @@
 ---
 namespace: mistermiles
 name: gpg_key_import
-version: 1.0.1
+version: 1.0.2
 readme: README.md
 authors:
   - Alexis Miles Oortmann (@MisterMiles) <mister_dev@mailbox.org>
-description: Importing a gpg key to a specific host
+description: This Ansible role imports your personal gpg key into your infrastructure
 license_file: LICENSE
 dependencies: { }
 tags:
