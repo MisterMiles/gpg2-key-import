@@ -60,12 +60,12 @@
 - name: import public key
   become_user: "{{ gpg_user }}"
   shell: gpg --import {{ tmp_dir }}/public.key
-  when: gpg_gpg_email not in pubkey_imported.stdout
+  when: gpg_email not in pubkey_imported.stdout
 
 - name: import signing key
   become_user: "{{ gpg_user }}"
   shell: gpg --import {{ tmp_dir }}/signing.key
-  when: gpg_gpg_email not in signkey_imported.stdout
+  when: gpg_email not in signkey_imported.stdout
 
 - name: import ownertrust
   become_user: "{{ gpg_user }}"

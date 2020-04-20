@@ -1,7 +1,7 @@
 ---
 namespace: mistermiles
 name: gpg_key_import
-version: 1.0.2
+version: 1.0.3
 readme: README.md
 authors:
   - Alexis Miles Oortmann (@MisterMiles) <mister_dev@mailbox.org>
