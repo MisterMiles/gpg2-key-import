@@ -3,7 +3,7 @@
 - name: create system group
   group:
     name: "{{ gpg_group }}"
-    system: True
+    system: "{{ 'yes' if gpg_system_group else 'no' }}"
     state: "present"
 
 - name: create system user
@@ -11,30 +11,49 @@
     name: "{{ gpg_user }}"
     group: "{{ gpg_group }}"
     home: "{{ gpg_home }}"
-    system: yes
+    system: "{{ 'yes' if gpg_system_user else 'no' }}"
+
+- name: ensure gnupg2 pkgs
+  apt:
+    items:
+      - pinentry-tty
+      - gnupg2
+    update_cache: yes
+
+- name: ensure .gnupg cfgs
+  template:
+    src:  "gnupg/{{ item }}.j2"
+    dest: "{{ gpg_home }}/.gnupg/{{ item }}"
+    owner: "{{ gpg_user }}"
+    group: "{{ gpg_group }}"
+    mode: '0600'
+  with_items:
+    - gpg-agent.conf
+    - gpg.conf
+  notify: reload gpg-agent
 
 - name: check public key
+  become: yes
   become_user: "{{ gpg_user }}"
-  shell: gpg --list-public-keys
-  ignore_errors: true
-  changed_when: false
-  register: pubkey_imported
+  command: gpg2 --list-public-keys
+  changed_when: False
+  register: pubkey_check
 
 - name: check signing key
+  become: yes
   become_user: "{{ gpg_user }}"
-  shell: gpg --list-secret-keys
-  ignore_errors: true
-  changed_when: false
-  register: signkey_imported
+  command: gpg2 --list-secret-keys
+  changed_when: False
+  register: signkey_check
 
 - name: check ownertrust
+  become: yes
   become_user: "{{ gpg_user }}"
-  shell: gpg --export-ownertrust
-  ignore_errors: true
-  changed_when: false
-  register: trust_imported
+  command: gpg2 --export-ownertrust
+  changed_when: False
+  register: ownertrust_check
 
-- name: ensure gpg dicrectory and keys
+- name: ensure gpg2 dicrectory and keys
   block:
     - name: ensure gnupg directory
       file:
@@ -44,35 +63,50 @@
         group: "{{ gpg_group }}"
         mode: "0700"
 
-    - name: copy gpg keys
-      template:
-        src: "files/{{ item }}"
-        dest: "{{ tmp_dir }}/{{ item }}"
+    - name: copy pub key
+      copy:
+        content: "{{ gpg_pubkey }}"
+        dest: "{{ tmp_dir }}/public.key"
         owner: "{{ gpg_user }}"
         group: "{{ gpg_group }}"
         mode: "0600"
-      with_items:
-        - public.key
-        - signing.key
-        - ultimate.trust
-  when: (signkey_imported.stdout == "") and (pubkey_imported.stdout == "") and (":6:" not in trust_imported.stdout)
 
-- name: import public key
+    - name: copy ultimate trust
+      copy:
+        content: "{{ gpg_ownertrust }}"
+        dest: "{{ tmp_dir }}/ultimate.txt"
+        owner: "{{ gpg_user }}"
+        group: "{{ gpg_group }}"
+        mode: "0600"
+
+    - name: copy sign key
+      copy:
+        content: "{{ gpg_signkey }}"
+        dest: "{{ tmp_dir }}/signing.key"
+        owner: "{{ gpg_user }}"
+        group: "{{ gpg_group }}"
+        mode: "0600"
+  when: (not signkey_check.stdout ) and (not pubkey_check.stdout) and (":6:" not in ownertrust_check.stdout)
+
+- name: ensure public key
+  become: yes
   become_user: "{{ gpg_user }}"
-  shell: gpg --import {{ tmp_dir }}/public.key
-  when: gpg_email not in pubkey_imported.stdout
+  command: gpg2 --import {{ tmp_dir }}/public.key
+  when: gpg_email not in pubkey_check.stdout
 
-- name: import signing key
+- name: ensure signing key
+  become: yes
   become_user: "{{ gpg_user }}"
-  shell: gpg --import {{ tmp_dir }}/signing.key
-  when: gpg_email not in signkey_imported.stdout
+  command: gpg2 --passphrase {{ gpg_sign_passwd }} --import {{ tmp_dir }}/signing.key
+  when: gpg_email not in signkey_check.stdout
 
-- name: import ownertrust
+- name: ensure ownertrust
+  become: yes
   become_user: "{{ gpg_user }}"
-  shell: gpg --import-ownertrust {{ tmp_dir }}/ultimate.trust
-  when: (":6:" not in trust_imported.stdout)
+  command: gpg2 --import-ownertrust {{ tmp_dir }}/ultimate.txt
+  when: (":6:" not in ownertrust_check.stdout)
 
-- name: clean up directory and keys
+- name: clean up tmp directory and keys
   file:
     state: absent
     path: "{{ tmp_dir }}/"

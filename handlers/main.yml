@@ -1,0 +1,6 @@
+---
+
+- name: reload gpg-agent
+  become: yes
+  become_user: "{{ gpg_user }}"
+  command: gpg-connect-agent reloadagent /bye

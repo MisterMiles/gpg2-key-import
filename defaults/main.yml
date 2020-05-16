@@ -1,8 +1,20 @@
 ---
 gpg_user: "username"
+gpg_system_user: "yes"
 gpg_group: "groupname"
-
-gpg_email: "username@email"
+gpg_system_group: "yes"
 
 gpg_home: "{{ lookup('env','HOME') }}"
 tmp_dir: "{{ gpg_home }}/tmp }}"
+
+gpg_sign_passwd: "your_holy_secret" # use lookup to import
+gpg_ownertrust: |
+  123456789:6
+gpg_signkey: | # use lookup to import
+  -----BEGIN PGP SECRECT KEY BLOCK-----
+  ....
+  -----END PGP SECRECT KEY BLOCK-----
+gpg_pubkey: |
+  -----BEGIN PGP PUBLIC KEY BLOCK-----
+  ....
+  -----END PGP PUBLIC KEY BLOCK-----
