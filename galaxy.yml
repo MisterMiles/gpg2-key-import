@@ -1,19 +1,19 @@
 ---
 namespace: mistermiles
-name: gpg_key_import
+name: gpg2_key_import
 version: 1.0.3
 readme: README.md
 authors:
   - Alexis Miles Oortmann (@MisterMiles) <mister_dev@mailbox.org>
-description: This Ansible role imports your personal gpg key into your infrastructure
+description: This Ansible role imports your personal gpg2 key into your infrastructure
 license_file: LICENSE
 dependencies: { }
 tags:
-  - gpg
+  - gpg2
   - pgp
   - openpgp
   - import
   - gnupg
-repository: https://github.com/MisterMiles/gpg-key-import
-documentation: https://github.com/MisterMiles/gpg-key-import
-issues: https://github.com/MisterMiles/gpg-key-import/issues
+repository: https://github.com/MisterMiles/gpg2-key-import
+documentation: https://github.com/MisterMiles/gpg2-key-import
+issues: https://github.com/MisterMiles/gpg2-key-import/issues
