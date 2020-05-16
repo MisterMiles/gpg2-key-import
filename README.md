@@ -1,14 +1,13 @@
 GPG2 key import
 =========
 
-Importing a gpg2 key to a specific host.
+Importing a gpg2 key to a specific host on linux.
 
 ## Features
 
-- Tests if your gpg2 key is present
-- Easy to use: you have only to supply your key files
+- Tests if your gpg2 key is present and implement it when not
 - Idempotency is present in all actions
-- Key is added to a specific user
+- Gnupg store is added to a specific user
 
 Requirements
 ------------
@@ -32,7 +31,6 @@ Role Variables
 `gpg_sign_passwd`: Password for GPG private key <br />
 `gpg_ownertrust`: Trust the implemented sign key<br />
 `gpg_signkey`: GPG private key <br />
-`gpg_signwith`: Hash id of GPG private key <br />
 `gpg_pubkey`: GPG public key
 
 Dependencies
@@ -52,7 +50,6 @@ Example Playbook
         gpg_home: /var/lib/repo
         gpg_sign_passwd: {{ lookup('hashi_vault', ... }}
         gpg_signkey: {{ lookup('hashi_vault', ... }}
-        gpg_signwith: << your_hash >>
         gpg_ownertrust: <hash_sequence>:6:
         gpg_pubkey: |
          foo

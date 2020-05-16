@@ -12,8 +12,7 @@ tags:
   - gpg2
   - pgp
   - openpgp
-  - import
-  - gnupg
+  - gnupg2
 repository: https://github.com/MisterMiles/gpg2-key-import
 documentation: https://github.com/MisterMiles/gpg2-key-import
 issues: https://github.com/MisterMiles/gpg2-key-import/issues

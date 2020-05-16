@@ -1,6 +1,6 @@
 galaxy_info:
   author: Alexis Miles Oortmann
-  description: Importing a gpg2 key to a specific host
+  description: Import a gpg2 key to a specific host on linux
   license: MIT
   min_ansible_version: 2.9.2
 
