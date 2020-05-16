@@ -12,7 +12,7 @@ Importing a gpg2 key to a specific host.
 
 Requirements
 ------------
-Before running the role you should update `defaults/main.yml` with your personal informations and add your gpg key in `defaults/main.yml` or overwrite it via group_vars.
+Before running the role you should update `defaults/main.yml` with your gpg informations.
 
 ### How to add the gpg keys
 
