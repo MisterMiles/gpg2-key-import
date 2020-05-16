@@ -14,7 +14,7 @@ Requirements
 ------------
 Before running the role you should update `defaults/main.yml` with your gpg informations.
 
-### How to add the gpg keys
+### How to get the gpg keys
 
 - public.key -> `gpg -a --export username@email`
 
